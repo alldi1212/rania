@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Selamat Ulang Tahun Sayang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffe6f0;
+      font-family: 'Quicksand', cursive, sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding-bottom: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #e60073;
+      font-size: 2em;
+      margin-top: 20px;
+      animation: fadeInDown 2s;
+      padding: 10px;
+    }
+
+    .kata {
+      text-align: center;
+      color: #cc0066;
+      font-size: 1em;
+      margin: 10px 20px;
+      animation: fadeInDown 2s ease-in-out;
+      line-height: 1.6em;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 90vw;
+      height: 50vh;
+      margin: 20px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slides img.active {
+      opacity: 1;
+    }
+
+    .btn {
+      display: block;
+      margin: 30px auto;
+      background: #e60073;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      animation: fadeInDown 2s;
+      max-width: 80%;
+    }
+
+    .btn:hover {
+      background: #cc0066;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .love {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .love span {
+      position: absolute;
+      display: block;
+      color: #ff4d88;
+      animation: floatLove 6s linear infinite;
+      font-size: 24px;
+    }
+
+    @keyframes floatLove {
+      0% { transform: translateY(100vh) scale(0); }
+      100% { transform: translateY(-10vh) scale(1.2); }
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Selamat malam Sayang ❤</h1>
+
+  <div class="kata">
+    bbo yang nyenyak ya<br>
+    Kalau dunia rasanya terlalu berat, peluk aku. Biar kita bagi bebannya bareng-bareng.<br>
+    kalau mau kemana-mana kabarin ya 💖
+  </div>
+
+  <div class="slideshow">
+    <div class="slides">
+      <img src="fotoo/foto1.jpg" class="active">
+      <img src="fotoo/foto2.jpg">
+      <img src="fotoo/foto3.jpg">
+      <img src="fotoo/foto4.jpg">
+    </div>
+  </div>
+
+  <div class="kata">
+    LUCU KAN WLEE, kamu bisa ga?.<br>
+    “Apa pun yang kamu hadapi hari ini, ingat ya… kamu nggak sendiri. Aku selalu di sini buat kamu.”💞
+  </div>
+
+  <button class="btn" onclick="alert('Peluk virtual buat kamu, sayang 😘')">coba tekan 🤗</button>
+
+  <audio autoplay loop>
+    <source src="https://jmp.sh/s/R2izW1zTMxiMDnrcTG6W" type="audio/mp3">
+    Browsermu tidak mendukung audio.
+  </audio>
+
+  <div class="love" id="love-container"></div>
+
+  <script>
+    let slides = document.querySelectorAll('.slides img');
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 3000);
+
+    function createLove() {
+      const love = document.createElement('span');
+      love.innerHTML = '❤';
+      love.style.left = Math.random() * window.innerWidth + 'px';
+      love.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.getElementById('love-container').appendChild(love);
+      setTimeout(() => {
+        love.remove();
+      }, 6000);
+    }
+
+    setInterval(createLove, 300);
+  </script>
+
+</body>
+</html>
